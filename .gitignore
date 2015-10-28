@@ -1,0 +1,13 @@
+/node_modules/*
+/libs/**
+/data/bg/*
+/data/bk/*
+/data/json/*
+/data/lyric/*
+/data/mp3/*
+/data/mp3-lq/*
+/data/config/password.json
+/gen/*
+ffmpeg.7z
+*.tmp
+!.gitkeep
