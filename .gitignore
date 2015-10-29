@@ -10,4 +10,5 @@
 /gen/*
 ffmpeg.7z
 *.tmp
+*.bak
 !.gitkeep
