@@ -268,7 +268,7 @@ ch.on('ready', function() {
 	
 	ch.get('/music2.hmacg.cn/list.xml',function(err,stream){
 		if(err){
-			console.log(err);
+			throw err;
 		}else{
 			stream.once('close', function() { 
 				console.log('old xml is saved.')
@@ -303,7 +303,7 @@ ch.on('ready', function() {
 			}
 			
 			if(found){
-				// console.log('ignore file /music2.hmacg.cn/lrc/'+o);
+				 // console.log('ignore file /music2.hmacg.cn/lrc/'+o);
 			}else{
 				uploadCount++;
 				console.log('upload '+o+' to  /music2.hmacg.cn/lrc/');

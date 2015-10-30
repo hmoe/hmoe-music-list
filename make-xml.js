@@ -26,26 +26,45 @@ var buildXML = function(){
 			console.log('Error: id '+i+' is not found')
 			continue;
 		}
-		var o = {
-			'type':workList[i].type,
-			'music_id':workList[i].music_id,
-			'duration':workList[i].duration,
-			'label':workList[i].label,
-			'lrc':'lrc/'+workList[i].music_id+'.txt',
-			'bg_video':'bk91/'+workList[i].music_id+'.jpg',
-			'bg':'bg.php?id='+workList[i].music_id+'',
-			'dl_link':workList[i].dl_link
-		};
-		xml.ele('m',o);
-		
+		var haveBg = true;
 		//test item
 		if(!fs.existsSync('./data/bg/'+workList[i].music_id+'.jpg')){
 			missBGList.push(workList[i]);
+			haveBg = false;
 		}else{
 			if(md5File('./data/bg/'+workList[i].music_id+'.jpg')==nullImage){
 				missBGList.push(workList[i]);
+				haveBg = false;
 			}
 		}
+		
+		if(haveBg){
+			var o = {
+				'type':workList[i].type,
+				'music_id':workList[i].music_id,
+				'duration':workList[i].duration,
+				'label':workList[i].label,
+				'lrc':'lrc/'+workList[i].music_id+'.txt',
+				'bg_video':'bk91/'+workList[i].music_id+'.jpg',
+				'bg':'bg.php?id='+workList[i].music_id+'',
+				'dl_link':workList[i].dl_link
+			};
+			xml.ele('m',o);
+		}else{
+			var o = {
+				'type':workList[i].type,
+				'music_id':workList[i].music_id,
+				'duration':workList[i].duration,
+				'label':workList[i].label,
+				'lrc':'lrc/'+workList[i].music_id+'.txt',
+				'bg_video':'bk91/'+workList[i].music_id+'.jpg',
+				'bg':'bg.php?id=0',
+				'dl_link':workList[i].dl_link
+			};
+			xml.ele('m',o);
+		}
+		
+		
 		
 		if(!fs.existsSync('./data/bk/'+workList[i].music_id+'.jpg')){
 			missBKList.push(workList[i]);
